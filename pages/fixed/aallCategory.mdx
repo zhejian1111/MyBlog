@@ -1,0 +1,14 @@
+import {Layout} from 'lib/components'
+import {Link, Tabs, Card, Text,Divider} from '@geist-ui/core'
+
+export const meta = {
+    title: '所有类目',
+    date: '',
+}
+
+<Divider align="start"><Link href="/blender">Blender</Link></Divider><br/>
+
+<Divider align="start"><Link href="/unity">Unity</Link></Divider>
+
+
+export default ({children}) => <Layout meta={meta}>{children}</Layout>
