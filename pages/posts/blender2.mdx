@@ -1,0 +1,379 @@
+import Layout from 'lib/components/layout'
+import {Keyboard} from '@geist-ui/core'
+
+export const meta = {
+  title: '[Blender] Blender全流程实现',
+  date: '2023-06-04T11:15:51.243Z',
+  description: '',
+  image: '',
+}
+
+
+## 1、构图
+
+### 1）导入案例
+
+<img src="https://img.picgo.net/2023/06/04/adeea06e734fb2c26061a2cfa578c33bc0ae8dcd94ecc44d.png" alt="adeea06e734fb2c26061a2cfa578c33bc0ae8dcd94ecc44d.png" border="0" style={{zoom:"67%"}}/>
+
+### 2）设置父级物体
+
+> 选中改模型的所有组件，比如铃铛，指针等，最后选中表盘，按下 <Keyboard>CTRL + P </Keyboard> ，设置父级物体，**选择物体（保持变换）**，就可以讲所有组件设置为表盘的子物体
+
+> 同理，将所有的模型，先 **框选出全部**，最后点击**主物体（父物体）**，再设置
+
+<img src="https://img.picgo.net/2023/06/04/f0f4b06744e2d1f2ebf96af001ed74969872e76caedc8ff9.png" alt="f0f4b06744e2d1f2ebf96af001ed74969872e76caedc8ff9.png" border="0" style={{zoom:"67%"}}/>
+
+
+
+## 2、布光
+
+### 1）设置摄像机
+
+> 按下 <Keyboard>SHIFT + A</Keyboard> 新增一个摄像机，并设置他的角度
+
+<img src="https://img.picgo.net/2023/06/04/image6ed431cd26d2bf2e.png" alt="image6ed431cd26d2bf2e.png" border="0" style={{zoom:"67%"}}/>
+
+> 如果摄像机不在基本集合中，可以选中摄像机，按下 <Keyboard>M</Keyboard> 键，移动到基本集合
+
+<img src="https://img.picgo.net/2023/06/04/image02cc304e427fab1f.png" alt="image02cc304e427fab1f.png" border="0" style={{zoom:"80%"}}/>
+
+### 2）调整摄像机
+
+> 按下小键盘的 <Keyboard>0</Keyboard> 设置为相机视角，按下 <Keyboard> G </Keyboard> 和 <Keyboard> Y </Keyboard> 移动摄像机
+
+<img src="https://img.picgo.net/2023/06/04/image090ceab38ba5c73a.png" alt="image090ceab38ba5c73a.png" border="0" style={{zoom:"50%"}}/>
+
+> 选中摄像机，在右侧摄像机按钮中，调整类型为正交，消除透视感
+
+> 视图显示栏中，将外边框设置为1，这样在摄像机视角以外的区域就会变黑，可以更专注的在摄像机视角中
+
+
+
+<img src="https://img.picgo.net/2023/06/04/image52ec2d8a8823bcbc.png" alt="image52ec2d8a8823bcbc.png" border="0" style={{zoom:"67%"}}/>
+
+> 分割窗口，一个摄像机视角，一个3D物体视角
+
+<img src="https://img.picgo.net/2023/06/04/image50c4fdda776c5047.png" alt="image50c4fdda776c5047.png" border="0" style={{zoom:"50%"}}/>
+
+### 3）布局
+
+> 新增一个平面，放大后，x轴旋转90°，移动到所有物体后方，成为背景
+
+<img src="https://img.picgo.net/2023/06/04/image3dc0b71a04192318.png" alt="image3dc0b71a04192318.png" border="0" style={{zoom:"50%"}}/>
+
+> 将物体添加到摄像机视角中，点击铃铛，按下 <Keyboard> SHIFT + S </Keyboard> ，选择 **选中项 -> 游标** 可以把物体移动到游标位置，之后进行调整
+
+> 右上角漏斗形状中，选中指针按钮，就可以开启是否可选中的属性
+
+<img src="https://img.picgo.net/2023/06/04/image62cb910db787c1b2.png" alt="image62cb910db787c1b2.png" border="0"/>
+
+> 然后将背景板设置为不可选中
+
+<img src="https://img.picgo.net/2023/06/04/image2c4bb5bb8d8ed573.png" alt="image2c4bb5bb8d8ed573.png" border="0"/>
+
+### 4）新增物体
+
+> <Keyboard>SHIFT + A</Keyboard> 添加一个经纬球，右键选择 **平滑着色**
+
+<img src="https://img.picgo.net/2023/06/04/imagee54ccc92b64ee5fe.png" alt="imagee54ccc92b64ee5fe.png" border="0" style={{zoom:"67%"}}/>
+
+> 给球体添加修改器，**表面细分**，就可以让球体更平滑
+
+<img src="https://img.picgo.net/2023/06/04/image2b5e82a9cfa095ae.png" alt="image2b5e82a9cfa095ae.png" border="0" style={{zoom:"67%"}}/>
+
+
+
+> 添加一个棱角球，左下角细分调整为 1
+
+<img src="https://img.picgo.net/2023/06/04/imageb6c36e76aa81db01.png" alt="imageb6c36e76aa81db01.png" border="0" style={{zoom:"67%"}}/>
+
+> 按下 <Keyboard> ~ </Keyboard> 波浪号键，选择 **查看所选** ，可以快速定位到改物体的视角
+
+<img src="https://img.picgo.net/2023/06/04/16858646851071ad109576d1d0d51.png" alt="16858646851071ad109576d1d0d51.png" border="0" style={{zoom:"67%"}}/>
+
+> 给棱角球也添加修改器 **倒角**，设置数量和段数，再选择右键 **平滑着色**，就可以让边更平滑
+
+<img src="https://img.picgo.net/2023/06/04/imagea43a5f3b968f9a55.png" alt="imagea43a5f3b968f9a55.png" border="0" style={{zoom:"60%"}}/>
+
+
+
+### 5）给场景打光
+
+> 打开材质预览，需要注意的是，**材质预览的效果不会参与渲染**，如果想要查看渲染，点击的是材质预览右边的按钮
+
+<img src="https://img.picgo.net/2023/06/04/imageaa34d2163a61068e.png" alt="imageaa34d2163a61068e.png" border="0"/>
+
+
+
+> 选中右侧的世界按钮，强度调整为0，可以排除掉环境光的影响
+
+<img src="https://img.picgo.net/2023/06/04/imagea8d9cc6cc776dd0a.png" alt="imagea8d9cc6cc776dd0a.png" border="0" style={{zoom:"67%"}}/>
+
+> 在视图中创建灯光选项中的 **面光**，并调整好大小和位置
+
+<img src="https://img.picgo.net/2023/06/04/imagefbfebd00da8a1402.png" alt="imagefbfebd00da8a1402.png" border="0" style={{zoom:"67%"}}/>
+
+> 在右侧面板中，将面光的强度调整为100W
+
+<img src="https://img.picgo.net/2023/06/04/image729ae23059b187f1.png" alt="image729ae23059b187f1.png" border="0"/>
+
+> 然后把光线移动到场景的左上方，按下 <Keyboard>SHIFT + D</Keyboard> 再赋值两个光源，打在左下角和右上角
+
+<img src="https://img.picgo.net/2023/06/04/image78c3be9cf0b5a36f.png" alt="image78c3be9cf0b5a36f.png" border="0" style={{zoom:"37%"}}/>
+
+
+
+
+
+## 3、动画
+
+### 1）添加关键帧
+
+> 将下方的时间线窗口，选择为曲线编辑器
+
+<img src="https://img.picgo.net/2023/06/04/imagee26c65f09159260d.png" alt="imagee26c65f09159260d.png" border="0"/>
+
+
+
+> 选中物体，按下 <Keyboard> I </Keyboard> 键，给物体的 **位置和旋转** 添加**关键帧**
+
+<img src="https://img.picgo.net/2023/06/04/image3e5796c602463e5d.png" alt="image3e5796c602463e5d.png" border="0" style={{zoom:"67%"}}/>
+
+### 2）开始设置
+
+> 给x位置设置**噪波修改器**
+
+<img src="https://img.picgo.net/2023/06/04/image42f5119b813f74c3.png" alt="image42f5119b813f74c3.png" border="0"/>
+
+> 设置修改器的参数
+
+<img src="https://img.picgo.net/2023/06/04/image0e6ae56a088f551e.png" alt="image0e6ae56a088f551e.png" border="0" style={{zoom:"67%"}}/>
+
+> 设置动画的时间为**10秒钟**，一秒钟24帧，所以修改结束点为 **240帧**
+
+<img src="https://img.picgo.net/2023/06/04/imagec23e4c68afc3c51a.png" alt="imagec23e4c68afc3c51a.png" border="0" style={{zoom:"67%"}}/>
+
+> 此时动画的开始和结束的位置并不相同，所以需要设置 **限定的帧范围**
+
+> 起始位置不用修改，结束点一样为 **240帧**，淡入淡出设置为 **15帧**
+
+<img src="https://img.picgo.net/2023/06/04/image7de315d453195afa.png" alt="image7de315d453195afa.png" border="0" style={{zoom:"55%"}}/>
+
+> 通过 **赋值/粘贴修改器** 设置好所有的位置和旋转
+
+<img src="https://img.picgo.net/2023/06/04/imagede1b1e11d78d955f.png" alt="imagede1b1e11d78d955f.png" border="0" style={{zoom:"67%"}}/>
+
+> 调整每个修改器中的偏移量，让每个修改器的曲线都不相同，可以让动画有随机性
+
+<img src="https://img.picgo.net/2023/06/04/image9af3a6eb4da696da.png" alt="image9af3a6eb4da696da.png" border="0"/>
+
+<br/>
+<img src="https://img.picgo.net/2023/06/04/QQ202306041639142023641640191a681bc1bacc898ca.gif" alt="QQ202306041639142023641640191a681bc1bacc898ca.gif" border="0" style={{zoom:"150%"}}/>
+
+> 同样的方法复制修改器，设置好每一个模型的动画
+
+### 3）希望球体朝一个方向旋转，而不是随机旋转
+
+> 棱角球朝着一个方向旋转，可以先将棱角球的旋转全部归0，然后鼠标悬浮在这些旋转参数的位置上按下 <Keyboard> I </Keyboard> 键，就可以在这个点给旋转添加关键帧
+
+<img src="https://img.picgo.net/2023/06/04/image869dbc37d627ae34.png" alt="image869dbc37d627ae34.png" border="0" style={{zoom:"67%"}}/>
+
+> 调整**第 240 帧** 的X和Y旋转，X正向旋转360°，Y反向旋转360°，然后再此按下 <Keyboard> I </Keyboard> 键，就可以在结束点插入关键帧
+
+<img src="https://img.picgo.net/2023/06/04/imagebc83b61f022ffd60.png" alt="imagebc83b61f022ffd60.png" border="0" style={{zoom:"50%"}}/>
+
+
+
+> 修改球体为匀速旋转，按下 <Keyboard>T</Keyboard>，更改线性
+
+<img src="https://img.picgo.net/2023/06/04/imageac0043b67acdf277.png" alt="imageac0043b67acdf277.png" border="0" style={{zoom:"47%"}}/>
+
+### 4）时钟的指针转动
+
+> 将指针设置为中间转轴的子集， <Keyboard>CTRL + P </Keyboard>
+
+> 按下 <Keyboard>SHIFT + S </Keyboard>，设置3D游标到转轴位置
+
+<img src="https://img.picgo.net/2023/06/04/imagedd3f0101aee0ecd7.png" alt="imagedd3f0101aee0ecd7.png" border="0" style={{zoom:"67%"}}/>
+
+> 并且把转轴的旋转值都**归0**，按下 <Keyboard>ALT + P </Keyboard> 清空父级
+
+> 选择**清除并保持变换结果**，清除完，再次将 **转轴的角度设置为0**
+
+<img src="https://img.picgo.net/2023/06/04/image7de0288d3dca77ed.png" alt="image7de0288d3dca77ed.png" border="0" style={{zoom:"80%"}}/>
+
+> 这时转轴就和世界坐标对齐了
+
+<img src="https://img.picgo.net/2023/06/04/imagebdf9c1bc75255ac7.png" alt="imagebdf9c1bc75255ac7.png" border="0" style={{zoom:"67%"}}/>
+
+> 在 **第 0 帧** 给转轴的Z轴 按下 <Keyboard> I </Keyboard> 添加关键帧
+
+<img src="https://img.picgo.net/2023/06/04/image585ae4f0448c5ddc.png" alt="image585ae4f0448c5ddc.png" border="0" style={{zoom:"50%"}}/>
+
+> **第240帧** 的时候，给转轴的 Z轴旋转设置为 360°，再次 按下 <Keyboard>I</Keyboard> 设置关键帧，同样 按下<Keyboard> T </Keyboard> 键设置为线性差值
+
+<img src="https://img.picgo.net/2023/06/04/image8c5a8b3bdfd37a26.png" alt="image8c5a8b3bdfd37a26.png" border="0" style={{zoom:"60%"}}/>
+
+> 按下 <Keyboard>SHIFT + S </Keyboard> 把3D游标设置到表盘中心，再把转轴移动到3D游标
+
+> 在3D游标处创建一个空的球体，然后把转轴设置为**空对象的子集**
+
+<img src="https://img.picgo.net/2023/06/04/imagea8e2898fe22434a7.png" alt="imagea8e2898fe22434a7.png" border="0" style={{zoom:"67%"}}/>
+
+> 最后，把**表盘的旋转参数**全部赋值给**空的球体**，就可以**改变球体方向**，而**不改变转轴的运动**，最后把空对象设置为**表盘的子集**
+
+<img src="https://img.picgo.net/2023/06/04/image6488f0b2e6cd2412.png" alt="image6488f0b2e6cd2412.png" border="0" style={{zoom:"57%"}}/>
+
+
+
+
+
+## 4、材质
+
+### 1）环境光
+
+> 设置环境强度为 1
+
+<img src="https://img.picgo.net/2023/06/04/image06c6db900220b032.png" alt="image06c6db900220b032.png" border="0" style={{zoom:"67%"}}/>
+
+> 接着设置一个灰一些的颜色，改变环境颜色
+
+<img src="https://img.picgo.net/2023/06/04/imageb20cf7d7283b160b.png" alt="imageb20cf7d7283b160b.png" border="0" style={{zoom:"47%"}}/>
+
+### 2）添加关联材质
+
+> 拉出一个 **着色器编辑器** 的窗口
+
+> 给背景板新增材质
+
+<img src="https://img.picgo.net/2023/06/04/imageada575b30a0fe83d.png" alt="imageada575b30a0fe83d.png" border="0" style={{zoom:"50%"}}/>
+
+> 先按照下面的配置，后面会更深入
+
+<img src="https://img.picgo.net/2023/06/04/imagec416951d8176f00a.png" alt="imagec416951d8176f00a.png" border="0" style={{zoom:"60%"}}/>
+
+> 复制材质给其他所有物体，要确保现在有材质的物体是橙色高亮，按下<Keyboard>CTRL + L </Keyboard> ，选择 **关联材质**
+
+<img src="https://img.picgo.net/2023/06/04/image02946a9fee3c54cd.png" alt="image02946a9fee3c54cd.png" border="0" style={{zoom:"60%"}}/>
+
+
+
+### 3）添加独立材质
+
+> 因为当前都是关联材质，所以改变了材质，所有的都会改变，因此需要新增材质
+
+<img src="https://img.picgo.net/2023/06/04/image7180c8c0d3fefc49.png" alt="image7180c8c0d3fefc49.png" border="0" style={{zoom:"50%"}}/>
+
+
+
+> 新增原理化材质，做出一个光泽感材质，将高光和高光染色拉满，糙度设置为0.35左右
+
+<img src="https://img.picgo.net/2023/06/04/image3bc8e2f8667b9617.png" alt="image3bc8e2f8667b9617.png" border="0" style={{zoom:"67%"}}/>
+
+> 按下 <Keyboard> SHIFT + A </Keyboard>添加混合着色器
+
+<img src="https://img.picgo.net/2023/06/04/image3ee51c96ccfdfc85.png" alt="image3ee51c96ccfdfc85.png" border="0" style={{zoom:"67%"}}/>
+
+> 连接两个原理化着色器
+
+<img src="https://img.picgo.net/2023/06/04/image9b23cdb040013bf5.png" alt="image9b23cdb040013bf5.png" border="0" style={{zoom:"67%"}}/>
+
+# 或者！使用node插件
+
+<img src="https://img.picgo.net/2023/06/04/imagebdc264ef2446dae2.png" alt="imagebdc264ef2446dae2.png" border="0" style={{zoom:"67%"}}/>
+
+> 如果想要快速预览着色器效果，按住 <Keyboard>SHIFT + CTRL</Keyboard> ，左键点击想要的着色器上，这样节点就会直接连到输出节点
+
+> 如果想要混合节点，只需要按住 <Keyboard>SHIFT + CTRL</Keyboard>，使用 **鼠标右键** 从一个节点拖到到另一个节点
+
+<img src="https://img.picgo.net/2023/06/04/image6fe485a97eb4566d.png" alt="image6fe485a97eb4566d.png" border="0" style={{zoom:"67%"}}/>
+
+### 4）一个物体分层的颜色材质
+
+> 按住 <Keyboard>Tab</Keyboard> 键，选择进入编辑模式
+
+<img src="https://img.picgo.net/2023/06/04/image41fa2a8615f264a4.png" alt="image41fa2a8615f264a4.png" border="0" style={{zoom:"67%"}}/>
+
+> 点击右侧的 **修改器**，打开 **表面细分修改器**，点击 **显示罩体** ，就可以看到细分的布线
+
+<img src="https://img.picgo.net/2023/06/04/image85fff8942d5c071b.png" alt="image85fff8942d5c071b.png" border="0" style={{zoom:"50%"}}/>
+
+> 按下大键盘中的数字 <Keyboard> 3 </Keyboard>，进入面选择模式，选中希望另外颜色的面
+
+> 按住 <Keyboard> ALT + 鼠标左键 </Keyboard> 就可以 **环形** 的选中一圈
+
+<img src="https://img.picgo.net/2023/06/04/image18d27f91e24f4587.png" alt="image18d27f91e24f4587.png" border="0" style={{zoom:"67%"}}/>
+
+> 选中完成后，点击右侧 **材质页面**，点击 **加号** 新增一个材质
+
+<img src="https://img.picgo.net/2023/06/04/imagea9e9ac9ef6f361c5.png" alt="imagea9e9ac9ef6f361c5.png" border="0" style={{zoom:"57%"}}/>
+
+> 点击 **** ，就可以置顶材质给这个新的材质
+
+<img src="https://img.picgo.net/2023/06/04/image616acea8404f922c.png" alt="image616acea8404f922c.png" border="0" style={{zoom:"57%"}}/>
+
+> 然后点击同一个位置下的 **确定** 按钮，就生效了
+
+<img src="https://img.picgo.net/2023/06/04/image55a0135249b67740.png" alt="image55a0135249b67740.png" border="0"/>
+
+> 将所有的材质设置好
+
+
+
+
+
+## 5、渲染设置
+
+### 1）渲染
+
+> 点击左侧的 **渲染引擎** ，调整渲染设置
+
+<img src="https://img.picgo.net/2023/06/04/imaged4b126ddc5a1d8c3.png" alt="imaged4b126ddc5a1d8c3.png" border="0" style={{zoom:"67%"}}/>
+
+### 2）测试渲染
+
+> 分辨率百分比调整为50%
+
+<img src="https://img.picgo.net/2023/06/04/image7c08bffed5df52a6.png" alt="image7c08bffed5df52a6.png" border="0" style={{zoom:"67%"}}/>
+
+> 按下 <Keyboard> F12 </Keyboard> 就可以进行渲染
+
+<img src="https://img.picgo.net/2023/06/04/image4e0ea6585f09b457.png" alt="image4e0ea6585f09b457.png" border="0" style={{zoom:"50%"}}/>
+
+> 调整背景板的材质，让背景不那么灰
+
+<img src="https://img.picgo.net/2023/06/04/imaged599d1b3f28e1fa5.png" alt="imaged599d1b3f28e1fa5.png" border="0" style={{zoom:"50%"}}/>
+
+
+
+## 6、后期调色
+
+### 1）进入合成器窗口
+
+<img src="https://img.picgo.net/2023/06/04/image842c8c4c9796bd76.png" alt="image842c8c4c9796bd76.png" border="0" style={{zoom:"50%"}}/>
+
+<br/>
+
+<img src="https://img.picgo.net/2023/06/04/imagee0b6aefac52d1e8a.png" alt="imagee0b6aefac52d1e8a.png" border="0" style={{zoom:"50%"}}/>
+
+> 按下 <Keyboard> SHIFT + A </Keyboard> 新增 **颜色平衡** 节点
+
+<img src="https://img.picgo.net/2023/06/04/image66441529b73b52fa.png" alt="image66441529b73b52fa.png" border="0" style={{zoom:"67%"}}/>
+
+<img src="https://img.picgo.net/2023/06/04/image7a80a7982374559d.png" alt="image7a80a7982374559d.png" border="0" style={{zoom:"50%"}}/>
+
+> 以及色相饱和度等，最后一定要记得连接到 **合成** 节点。才会应用
+
+<img src="https://img.picgo.net/2023/06/04/image654d4f43277ca8bd.png" alt="image654d4f43277ca8bd.png" border="0" style={{zoom:"67%"}}/>
+
+
+
+## 7、渲染输出
+
+> 回到 **输出** 选项，调整好 输出的配置，路径等，就可以按下 <Keyboard> CTRL + F12 </Keyboard>进行渲染了
+
+<img src="https://img.picgo.net/2023/06/04/imagef112be2a591f2eb4.png" alt="imagef112be2a591f2eb4.png" border="0" style={{zoom:"67%"}}/>
+
+
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>
