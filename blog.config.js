@@ -3,7 +3,7 @@ const BLOG = {
   title: 'Bryce\'s Blog',
   description:
     "Hi, I'm Bryce.",
-  summary: '',
+  summary: "Hi, I'm Bryce.",
   language: 'zh-cn',
   latestLimit: 5,
 
