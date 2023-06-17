@@ -1,0 +1,158 @@
+import Layout from 'lib/components/layout'
+import {Snippet,Code} from '@geist-ui/core'
+
+export const meta = {
+  title: '[Ubuntu] ubuntu 基础与 docker 安装',
+  date: '2023-06-18T01:22:50.305Z',
+  description: '',
+  image: '',
+}
+
+
+## ubuntu基础
+
+### 1、各个文件夹说明
+
+#### 1） /etc 
+
+存放文件管理配置文件和目录（系统文件和大部分应用程序的全局配置文件）
+
+#### 2）/home
+
+用户的默认目录（每个用户都有一个以用户名命名的文件夹）
+
+#### 3）/media
+
+存放系统自动挂载的设备文件（系统默认把硬盘挂载到这个文件夹内）
+
+/media 下通常是可移除设备，添加新硬盘的时候不会直接显示，需要通过挂载的方式挂载到指定文件夹
+
+#### 4）/var
+
+包含系统运行过程中的动态数据
+
+存放日志、数据库、网站等文件，Docker下载的镜像和容器都存在这个文件夹
+
+
+
+### 2、安装docker
+
+#### 1）更新 Ubuntu
+
+依次执行以下命令：<br/>
+<Snippet text={'sudo apt update'} type="secondary"  width="500px" /><br/>
+
+<Snippet text={'sudo apt upgrade'} type="secondary"  width="500px" /><br/>
+
+<Snippet text={'sudo apt full-upgrade'} type="secondary"  width="500px" /><br/>
+
+
+#### 2）添加 Docker 库
+
+首先，安装必要的证书并允许 apt 包管理器使用以下命令通过 HTTPS 使用存储库：
+
+
+<Snippet text={'sudo apt install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release'} 
+type="secondary"  width="500px" /><br/>
+
+然后，运行下列命令添加 Docker 的官方 GPG 密钥：
+
+<Snippet text={'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg'} 
+type="secondary"  width="500px" /><br/>
+
+
+添加 Docker 官方库：
+
+
+<Snippet text={'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'} 
+type="secondary"  width="500px" /><br/>
+
+使用命令更新 Ubuntu 源列表：
+
+<Snippet text={'sudo apt update'} type="secondary"  width="500px" /><br/>
+
+#### 3）安装 Docker
+
+最后，运行下列命令在 Ubuntu 22.04 LTS 服务器中安装最新 Docker CE：
+
+
+<Snippet text={'sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin'} type="secondary"  width="500px" /><br/>
+
+安装完成后，运行如下命令验证 Docker 服务是否在运行：
+
+
+<Snippet text={'systemctl status docker'} type="secondary"  width="500px" /><br/>
+
+这时候会看到以下输出：
+
+<img src="https://img.picgo.net/2023/06/18/image24bdff40e67d2b7e.png" alt="image24bdff40e67d2b7e.png" border="0"/>
+
+
+如果没有运行，运行以下命令运行 Docker 服务：
+
+<Snippet text={'sudo systemctl start docker'} type="secondary"  width="500px" /><br/>
+
+使 Docker 服务在每次重启时自动启动：
+
+
+<Snippet text={'sudo systemctl enable docker'} type="secondary"  width="500px" /><br/>
+
+可以使用以下命令查看已安装的 Docker 版本：
+
+
+<Snippet text={'sudo docker version'} type="secondary"  width="500px" /><br/>
+
+
+这时候会看到以下输出：
+
+<img src="https://img.picgo.net/2023/06/18/image65e326d0d63b5b5f.png" alt="image65e326d0d63b5b5f.png" border="0"/>
+
+#### 4）测试 Docker
+
+<Snippet text={'sudo docker run hello-world'} type="secondary"  width="500px" /><br/>
+
+上述命令会下载一个 Docker 测试镜像，并在容器内执行一个 “hello_world” 样例程序。
+
+
+### 3、安装 Docker Compose
+
+**Docker Compose** 是一个可用于定义和运行多容器 Docker 应用程序的工具。
+使用 docker-compose，你可以使用 compose 文件来配置应用程序的服务。然后，使用单个命令，你可以从配置中创建和启动所有服务。
+
+#### 1）使用二进制文件安装 Docker Compose
+
+执行下列命令安装最新稳定的 Docker Compose 文件：
+
+如果有更新版本，只需要将上述命令中的 v2.18.1 替换为最新的版本号即可。请不要忘记数字前的 “v” 。
+
+<Snippet text={'sudo curl -L "https://github.com/docker/compose/releases/download/v2.18.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'} type="secondary"  width="500px" /><br/>
+
+
+最后，使用下列命令赋予二进制文件可执行权限：
+
+<Snippet text={'sudo chmod +x /usr/local/bin/docker-compose'} type="secondary"  width="500px" /><br/>
+
+运行下列命令检查安装的 Docker Compose 版本：
+
+<Snippet text={'docker-compose version'} type="secondary"  width="500px" /><br/>
+
+
+此时会输出
+
+<Code block my={0}>Docker Compose version v2.18.1</Code>
+
+
+
+
+#### 报错处理
+
+1、切换成国内镜像，防止出错
+
+<Snippet text={['sudo mkdir -p /etc/docker', 'sudo tee /etc/docker/daemon.json <<-\'EOF\'','{','"registry-mirrors": ["https://yxzrazem.mirror.aliyuncs.com"]',
+'}','EOF','sudo systemctl daemon-reload','sudo systemctl restart docker"']}  type="secondary"  width="500px" />
+
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>
+
+
+
