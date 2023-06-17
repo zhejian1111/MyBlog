@@ -1,0 +1,367 @@
+import Layout from 'lib/components/layout'
+import {Keyboard} from '@geist-ui/core'
+
+export const meta = {
+  title: '[Blender] 编辑模式基础',
+  date: '2023-06-17T14:24:50.305Z',
+  description: '',
+  image: '',
+}
+
+
+## 编辑模式基本操作
+
+### 1、编辑模式介绍
+
+### 使用编辑模式和编辑模式中的快捷键
+
+
+
+> 按住  <Keyboard>Tab</Keyboard> ，就可以快速进入**物体模式**或者**编辑模式**
+
+<img src="https://img.picgo.net/2023/06/17/image2a1ba82506b7dbc2.png" alt="image2a1ba82506b7dbc2.png" border="0"/>
+
+但是默认是不开启Tab饼状菜单，需要在偏好设置中手动勾选
+
+<img src="https://img.picgo.net/2023/06/17/78f552bdfcfe7660d287e43f2c7a020338656dcdfbf459fe.png" alt="78f552bdfcfe7660d287e43f2c7a020338656dcdfbf459fe.png" border="0"/>
+
+
+
+> 按住数字键 <Keyboard>1</Keyboard> 快捷进入 **点选择模式**
+
+> 按住数字键 <Keyboard>2</Keyboard> 快捷进入 **线选择模式**
+
+> 按住数字键 <Keyboard>3</Keyboard> 快捷进入 **面选择模式**
+
+
+
+> 按住 <Keyboard>ALT</Keyboard> 的同时，选中物体，可以进行点、线、面的 **环选** 
+
+> 点按的位置靠近上下边就是 **竖向环选**，靠近左右边，就是 **横向环选**
+
+
+
+> 如果不想选中一整圈，可以选中一个点，按住 <Keyboard>SHIFT + CTRL</Keyboard> 键，再选中终点的点，这时候，就会选中 **两点之间所有的点**
+
+
+
+> 如果选中比如对角线的点，而希望选取的是最短路径的点，可以取消勾选左下角的 **填充区域**
+
+> 如果勾选 **捷径跨面** ，则会无视边，直接选中对角线上的点
+
+<img src="https://img.picgo.net/2023/06/17/image1bf9fe5826a4239a.png" alt="image1bf9fe5826a4239a.png" border="0"/>
+
+
+
+
+
+> 在 点、线、面选择模式下，按下 <Keyboard>A</Keyboard> 可以全选，双击 <Keyboard>A</Keyboard> ，可以取消全选
+
+> 选中点、线、面后，按下 <Keyboard>CTRL + I</Keyboard> ，可以进行反选
+
+<img src="https://img.picgo.net/2023/06/17/imaged048c067ff4a4e81.png" alt="imaged048c067ff4a4e81.png" border="0"/>
+
+> 选中点、线、面后，按两下 <Keyboard>G</Keyboard> 键，可以让该点、线、面，沿着固定的边移动
+
+<img src="https://img.picgo.net/2023/06/17/imageaea0bacbc725b274.png" alt="imageaea0bacbc725b274.png" border="0"/>
+
+> 按下 <Keyboard>X</Keyboard> ，可以选择删除选中的点、线、面
+
+> 如果想删除顶点，但是不产生空洞，不影响原来的结构，可以选择 **融并**
+
+<img src="https://img.picgo.net/2023/06/17/image995922ffb5b36e10.png" alt="image995922ffb5b36e10.png" border="0"/>
+
+
+
+
+
+> 选中的点、线、面，按下 <Keyboard>SHIFT + D</Keyboard> ，可以复制该元素
+
+> 选中点、线、面，按下 <Keyboard>E</Keyboard> 键（挤出），可以从该元素延伸出来，新的元素会 **与该元素相连**
+
+<img src="https://img.picgo.net/2023/06/17/image4ed9112d8e51a92f.png" alt="image4ed9112d8e51a92f.png" border="0"/>
+
+> 选中两个顶点，按下 <Keyboard>F</Keyboard> 键，就可以将两个顶点相连接，线和面也以一样
+
+> 选中两个顶点，按下 <Keyboard>鼠标右键</Keyboard>， 选择合并，可以合并成一个顶点
+
+<img src="https://img.picgo.net/2023/06/17/image0579ed14fc2b05a4.png" alt="image0579ed14fc2b05a4.png" border="0"/>
+
+> 选择点，按下 <Keyboard>V</Keyboard> 键，可以断开这个顶点，但是这个操作会产生空洞
+
+<img src="https://img.picgo.net/2023/06/17/imageff749bed810e7b55.png" alt="imageff749bed810e7b55.png" border="0"/>
+
+> 如果想断开而 **不想产生空洞** ，可以按下 <Keyboard>ALT + V</Keyboard> ，就可以让断开的点和原来的地方产生连接
+
+<img src="https://img.picgo.net/2023/06/17/image23b703c7ce73a087.png" alt="image23b703c7ce73a087.png" border="0"/>
+
+> 在塑形的过程中，如果碰到顶点不够用的情况，可以使用顶点细分
+
+> 选择两个顶点，按下 <Keyboard>鼠标右键</Keyboard> ，选择 **细分** ，就会在两个顶点中间生成新的顶点
+
+> 同时左下角会出现 **细分窗口** ，切割次数代表生成多少个新顶点，分型可以让顶点位置更随机
+
+<img src="https://img.picgo.net/2023/06/17/image9717545ef8cbd1de.png" alt="image9717545ef8cbd1de.png" border="0"/>
+
+
+
+> 如果需要将一个平面中的所有点都消失，**融并点** 会让整个平面都消失
+
+> 选择 **有限融并** ，才会保留住平面同时，让所有点消失
+
+<img src="https://img.picgo.net/2023/06/17/imagea4bdf2785d35e1e8.png" alt="imagea4bdf2785d35e1e8.png" border="0"/>
+
+> 选择 **塌陷** 选项，则可以合并点线面的同时，保留原来的 **UV 和 颜色** 等数据
+
+<img src="https://img.picgo.net/2023/06/17/image55b6767ea2be436b.png" alt="image55b6767ea2be436b.png" border="0"/>
+
+> 当用 <Keyboard>SHIFT</Keyboard> 选择了多个顶点后，想要取消多个顶点，可以按住左侧的第一个图标 ，拉出选择 **框选**
+
+> 然后按住 <Keyboard>CTRL</Keyboard> ，并框选出要反选的所有点，可以将他们一起反选
+
+<img src="https://img.picgo.net/2023/06/17/image33f89846dfff3fc0.png" alt="image33f89846dfff3fc0.png" border="0"/>
+
+> 不同的选择模式
+
+<img src="https://img.picgo.net/2023/06/17/imageb6cf5c8230f541c4.png" alt="imageb6cf5c8230f541c4.png" border="0"/>
+
+> 第一种默认，就是 <Keyboard>SHIFT</Keyboard> 多选，<Keyboard>CTRL</Keyboard> 反选，第二次选择的时候会清空第一次选择的
+
+> 第二种就是默认按下 <Keyboard>SHIFT</Keyboard>，多次选择会默认按住 <Keyboard>SHIFT</Keyboard>，默认多选
+
+> 第三种就是默认按下 <Keyboard>CTRL</Keyboard>，多次选择会默认按住 <Keyboard>CTRL</Keyboard>，默认反选
+
+> 第四种，取差值吗，两次框选的区域，相同的区域会取消选择
+
+> 第五种，和第四种相反，会保留两次都框选中的区域
+
+# 选择他人的模型中的小部件！！！
+
+> 当导入别人做的模型时，他们的通常布线都是合并的状态，如果想选中其中一个部件
+
+> 选中那个部件的一小块区域，按下 <Keyboard>CTL + 小键盘的加号</Keyboard> 就可以自动的扩散选择出去
+
+> 同样的，按下 <Keyboard>CTL + 小键盘的减号</Keyboard> 就可以自动的缩减选择的范围
+
+<img src="https://img.picgo.net/2023/06/17/image6a6502f0ea2a3db3.png" alt="image6a6502f0ea2a3db3.png" border="0"/>
+
+> 选择一块区域或者点，按下 <Keyboard>L</Keyboard> 键，就可以直接选中 **所有** 与这个区域或者点连接的所有点
+
+<img src="https://img.picgo.net/2023/06/17/imageab841a5ed0ceab09.png" alt="imageab841a5ed0ceab09.png" border="0"/>
+
+
+
+# 重叠点的合并！！！
+
+> 按下 <Keyboard>A</Keyboard> 全选，按下 <Keyboard>右键</Keyboard> 选择 **合并顶点**
+
+> 选择 **按距离** ，就可以设定一个阈值，小于这个阈值距离的点就会被 **合并** ，大于则没变化
+
+> 类似与其他软件的 **焊接**
+
+<img src="https://img.picgo.net/2023/06/17/image2dbddc0d341f0726.png" alt="image2dbddc0d341f0726.png" border="0"/>
+
+
+
+
+
+
+
+### 2、辅助工具 -- 吸附 
+
+#### 1）开启吸附
+
+> 点击上方的磁铁选项，或者按下 <Keyboard>SHIFT + Tab</Keyboard> 键，开启吸附功能
+
+<img src="https://img.picgo.net/2023/06/17/image879bdef32536820e.png" alt="image879bdef32536820e.png" border="0"/>
+
+#### 2）吸附的选项
+
+##### a. 增量
+
+选择增量的时候移动物体，物体移动的单位会变成一个个栅格框，移动的距离取决于当前缩放下的格子大小
+
+<img src="https://img.picgo.net/2023/06/17/image81367677d078a613.png" alt="image81367677d078a613.png" border="0"/>
+
+缩放倍率可以手动调整
+
+<img src="https://img.picgo.net/2023/06/17/image6e325c768c50c46c.png" alt="image6e325c768c50c46c.png" border="0"/>
+
+##### b.顶点
+
+比如将一个立方体移动到紧贴着另一个立方体，点击顶点吸附
+
+按下 <Keyboard>G</Keyboard> 键，鼠标移动到另一个立方体的 **顶点处**，就会自动吸附
+
+<img src="https://img.picgo.net/2023/06/17/image717fa509c126c455.png" alt="image717fa509c126c455.png" border="0"/>
+
+如果需要将立方体中心的面吸附到另一个立方体的顶点
+
+> 1、吸附选择项中的 **吸附到基准点**，选择 **中心**
+
+> 2、进入要移动的物体编辑模式，讲游标设置到物体的连接面中心
+
+<img src="https://img.picgo.net/2023/06/17/image9db769593d18cef1.png" alt="image9db769593d18cef1.png" border="0"/>
+
+> 3、回到物体模式，改变物体的原点 -> 3D游标
+
+<img src="https://img.picgo.net/2023/06/17/image7b922d98c0166ab2.png" alt="image7b922d98c0166ab2.png" border="0"/>
+
+> 这时候移动物体到顶点就可以完成了
+
+<img src="https://img.picgo.net/2023/06/17/image905f1d6f95f45ffa.png" alt="image905f1d6f95f45ffa.png" border="0"/>
+
+如果勾选了 **旋转对齐目标**，此时物体就会移动到顶点的同时，旋转变换为顶点的法向坐标
+
+<img src="https://img.picgo.net/2023/06/17/image9183857f4ea5c274.png" alt="image9183857f4ea5c274.png" border="0"/>
+
+
+
+##### c、边吸附
+
+与点吸附相同，只是移动目标从点变成了边
+
+
+
+##### d.面投射
+
+与点吸附相同，只是移动目标是面
+
+
+
+##### e.面最近模式
+
+目标同样是面，但是只能吸附到物体的边缘吸附，移动不到别的地方，只能在面上移动
+
+
+
+##### f.体积吸附
+
+可以吸附在目标物体的体积范围内
+
+
+
+##### g.边中点模式
+
+只能吸附在边的中心点
+
+
+
+##### h.垂直交线
+
+吸附对象要和吸附的点垂直
+
+
+
+
+
+
+
+
+
+### 3、辅助工具 -- 衰减编辑
+
+如果希望调整一个物体时，其他的物体可以连带这调整的物体产生一些轻微的形变
+
+衰减编辑可以生成一个影响范围
+
+#### 1）点击吸附按钮旁的 靶子形状图标
+
+<img src="https://img.picgo.net/2023/06/17/image8223eb9803f36e5b.png" alt="image8223eb9803f36e5b.png" border="0"/>
+
+#### 2）可以通过衰减编辑旁的按钮调整影响的曲线
+
+#### a.平滑曲线
+
+> 选中一个点，调整他的位置，圆圈范围内的点会跟着 **形变**，范围可以通过 **鼠标滚轮** 进行调整
+
+<img src="https://img.picgo.net/2023/06/17/image70595bf119693def.png" alt="image70595bf119693def.png" border="0"/>
+
+
+
+#### b.球状
+
+范围内的点会形成球状，不会想平滑曲线一样平滑，比较生硬，形成球体
+
+<img src="https://img.picgo.net/2023/06/17/image6aa8c48242cb4a17.png" alt="image6aa8c48242cb4a17.png" border="0"/>
+
+
+
+#### c.跟突
+
+顶点会突起
+
+<img src="https://img.picgo.net/2023/06/17/image189dfabac00ca543.png" alt="image189dfabac00ca543.png" border="0"/>
+
+#### d.平方反比
+
+界于平滑和球状之间，差别在于中心和边缘的平滑力度上
+
+
+
+#### e.锐利
+
+
+
+<img src="https://img.picgo.net/2023/06/17/imagea638fd68d4c9f70a.png" alt="imagea638fd68d4c9f70a.png" border="0"/>
+
+
+
+#### f.线性
+
+形成圆锥
+
+
+
+#### g.随机
+
+<img src="https://img.picgo.net/2023/06/17/image3423874c5f4ad75e.png" alt="image3423874c5f4ad75e.png" border="0"/>
+
+
+
+其他略过，自己试
+
+
+
+### 3）仅相连项
+
+勾选后 当有两个物体的时候，没有相连的不会受到影响
+
+> 下图为没勾选
+
+<img src="https://img.picgo.net/2023/06/17/image325588d2763fda7f.png" alt="image325588d2763fda7f.png" border="0"/>
+
+> 下图为勾选
+
+<img src="https://img.picgo.net/2023/06/17/imagede03476b11b38393.png" alt="imagede03476b11b38393.png" border="0"/>
+
+
+
+#### 4）从视角投影
+
+因为存在透视关系，这时候，影响的范围就是用户视角看到的范围
+
+如果从两个物体的侧面去调整，两个物体都会在圆圈范围内，所以都会形变
+
+<img src="https://img.picgo.net/2023/06/17/image5c1ad00dcf7be6ab.png" alt="image5c1ad00dcf7be6ab.png" border="0"/>
+
+
+
+衰减编辑也可以通过下方的小窗口进一步调整
+
+<img src="https://img.picgo.net/2023/06/17/image767033d9622a5e89.png" alt="image767033d9622a5e89.png" border="0"/>
+
+## 2、总结
+
+
+
+01、编辑模式是建模用到的主要模式。如果想要调整模型的话就必须进入到编辑模式中进行调整。
+
+02.吸附工具是编辑模式中一顶非常好用的功能，我们可以让模型的点线面在设定的吸附规则上进行精准的调整操作，进而达到精确的结果控制。
+
+03、衰减编辑同样是编辑模式中的一顶非常好用的功能，它可以帮助我们节省大量的时间，在转换选定元素的时候，衰减编辑可以帮助我们影响到周围的顶点，在进行模型调整的时候提高我们的效率。
+
+
+
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>
