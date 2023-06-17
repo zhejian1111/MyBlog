@@ -1,15 +1,13 @@
 import { Layout } from 'lib/components'
-import { Button } from '@geist-ui/core'
+import {Code } from '@geist-ui/core'
 
 export const meta = {
-  title: 'Hello World',
-  date: '2019-06-03T11:38:04.563Z',
+  title: "Hi , i'm Bryce.",
+  date: '2023-06-03T11:38:04.563Z',
 }
 
-Welcome to `unix.bio`, run `npm run post` to create your first post.
+运行 <Code block my={0}>npm run post</Code> 创建文章。
 
-<Button auto scale={2 / 3} onClick={() => alert('done')}>
-  Click to share
-</Button>
+
 
 export default ({ children }) => <Layout meta={meta}>{children}</Layout>
