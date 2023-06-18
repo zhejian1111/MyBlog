@@ -1,0 +1,665 @@
+import Layout from 'lib/components/layout'
+import {Keyboard} from '@geist-ui/core'
+
+export const meta = {
+  title: '[Blender] 编辑模式左侧工具栏',
+  date: '2023-06-18T12:40:13.104Z',
+  description: '',
+  image: '',
+}
+
+
+编辑模式左侧编辑工具的原理和使用方法
+
+## 编辑工具介绍
+
+ <img src="https://img.picgo.net/2023/06/18/image5a72a24d61a4dba1.png" alt="image5a72a24d61a4dba1.png" border="0"/>
+
+可以大致的分为五大类
+
+> 第一类是选择类型的工具，**选择** 和 **游标** 工具
+
+
+
+> 第二类是调整工具，分别是 **移动** 、 **旋转** 、 **缩放** 和 **变换** 工具
+
+
+
+> 第三类是辅助工具，分别是 **标注** 以及 **测量** 工具，虽然不能对建模有什么实质影响，但是可以辅助
+
+**标注** 可以在画面中绘制画笔，比如在构思结构或者画草图的时候，可以在视图中绘制线条
+
+它的快捷键是 <Keyboard>D</Keyboard> 键，按住 <Keyboard>D</Keyboard> 键，同时按住 <Keyboard>鼠标左键</Keyboard> 绘制，就可以在画面中生成笔画
+
+按住 <Keyboard>D</Keyboard> 键，同时按住 <Keyboard>鼠标右键</Keyboard> ，就可以在擦除笔画
+
+标注的线条只存在于视图中，不会被渲染
+
+
+
+**测量** 可以帮助我们测量任意两个点之间的 **3D空间距离** 
+
+
+
+> 第四类是交互式建模工具
+
+可以在视图中框选出新增的图形，按住拖动图标可以选择物体的形状
+
+也可以使用 <Keyboard>SHIFT + A</Keyboard> ，在编辑模式中添加其他的模型
+
+不过这些添加进来的模型，会和现有的图形 **在同一个主体中**
+
+退出编辑模式之后，他们将会作为一个 **整体**
+
+
+> 第五个分组就是建模工具类型，这次主要讲解的就是这一组的工具
+
+
+
+## 建模工具的使用
+
+### PART. 1	挤出工具
+
+<img src="https://img.picgo.net/2023/06/18/image9c8176cbbb88c7aa.png" alt="image9c8176cbbb88c7aa.png" border="0"/>
+向右拖动，有5种不同的挤出
+
+#### 1）挤出选区
+
+选中模型的点线面就会出现一个加号，拖动加号就可以进行挤出
+
+挤出的默认方向是 **法向朝向** ，所以在默认模式下使用挤出工具，就可以让面沿着 **垂直方向** 进行挤出
+
+<img src="https://img.picgo.net/2023/06/18/image12cdb40e434a0168.png" alt="image12cdb40e434a0168.png" border="0" style={{zoom:"50%"}}/>
+
+如果选中上方菜单的 <Keyboard>XYZ</Keyboard> ， 就可以让面沿着 XYZ 轴挤出 
+
+<img src="https://img.picgo.net/2023/06/18/image53ea4853574ba598.png" alt="image53ea4853574ba598.png" border="0" style={{zoom:"50%"}}/>
+
+同时也可以使用快捷键 <Keyboard>E</Keyboard> 键，选中点、边、面后，按下 <Keyboard>E</Keyboard> 键，就可以调出挤出工具
+
+默认方向也是沿着 **法向方向** 进行挤出
+
+如果使用的是 <Keyboard>鼠标中间</Keyboard> ，就会出现 XYZ 三个轴向
+
+### 常见问题 ！！！
+
+如果挤出后反悔，不想挤出了，尝尝会点击鼠标右键取消操作
+
+但是挤出操作是包含两个步骤，一是挤出，二是移动，**右键取消的是移动的操作，挤出的面并没有删除**
+
+如果没有注意到的话，在后期建模会出现很多问题，因为挤出的面会和原来的面重叠在一起
+
+就会出现重叠点，如果使用 倒角 等操作的时候，就会出现很多错误
+
+所以正确反悔的时候方法就是
+
+一、随便移动到一个位置，然后 <Keyboard>CTRL + Z</Keyboard> 撤销操作
+
+二、右键取消后，勾选左下角菜单中的 **融并正交边**，系统就会把重叠的点自动合并起来
+
+但是融并正交边仅使用与 **单个面的挤出撤销操作**，如果同时挤出2个以上的面，这个选项没有效果
+
+> 同时也有一个保险的办法，切换到点模式下，按下 <Keyboard>A</Keyboard> 全选所有的点，右键选择 合并顶点 -> 按距离
+
+此方法在 **编辑模式基础** 中有介绍
+
+<img src="https://img.picgo.net/2023/06/18/imaged9ebdb1327fd880b.png" alt="imaged9ebdb1327fd880b.png" border="0" style={{zoom:"50%"}}/>
+
+#### 2）挤出流形工具
+
+<img src="https://img.picgo.net/2023/06/18/imagea7fdd03fd7ecbf72.png" alt="imagea7fdd03fd7ecbf72.png" border="0" style={{zoom: "70%"}} />
+
+这个工具可以让和这个面连接的4个面一起移动，而常规的挤出只会移动选中的面
+
+就可以很方便的做出类似 楼梯 的结构
+
+<img src="https://img.picgo.net/2023/06/18/imaged77692d2bda3e3ff.png" alt="imaged77692d2bda3e3ff.png" border="0" style={{zoom:"50%"}}/>
+
+3）沿法向挤出
+
+<img src="https://img.picgo.net/2023/06/18/imagef85414cc88874175.png" alt="imagef85414cc88874175.png" border="0" style={{zoom:"70%"}}/>
+
+他可以让所有选中的面，沿着自己的法向挤出，而不是同一个方向
+
+<img src="https://img.picgo.net/2023/06/18/image249ad438ea13589e.png" alt="image249ad438ea13589e.png" border="0" style={{zoom:"50%"}}/>
+
+4）挤出各个面
+
+这个和第三个沿法向挤出工具不同的是，挤出的面不会相互连接在一起
+
+<img src="https://img.picgo.net/2023/06/18/imaged562c427b7a0ccb1.png" alt="imaged562c427b7a0ccb1.png" border="0" style={{zoom:"50%"}}/>
+
+5）挤出至光标
+
+它会直接挤出到鼠标点击到的位置
+
+但是透视视角下位置就会有不确定性
+
+所以可以在 **正交视角下** 使用，就可以更精确的挤出到想要的位置
+
+> 这个在制作比如叶子或者树木树枝的时候会很方便
+
+<img src="https://img.picgo.net/2023/06/18/imageb85a4698f58517d6.png" alt="imageb85a4698f58517d6.png" border="0" style={{zoom:"50%"}}/>
+
+
+
+### PART. 2	内插面工具
+
+内插面工具可以在面内生成面
+
+拖动中间的黄色圆圈就可以控制内插面的大小
+
+也可以使用快捷键 <Keyboard>I</Keyboard> 键来使用内插面工具
+
+<img src="https://img.picgo.net/2023/06/18/image53e00fc16dfc44ac.png" alt="image53e00fc16dfc44ac.png" border="0" style={{zoom:"50%"}}/>
+
+在移动内插面到确定的位置时，可以按住 <Keyboard>CTRL</Keyboard> ，就可以控制内插面的深度
+
+这时候按下 <Keyboard>O</Keyboard> 键，就可以切换到外插，再次按下  <Keyboard>O</Keyboard> 键，又可以回到内插
+
+<img src="https://img.picgo.net/2023/06/18/imageac09c483b336d4da.png" alt="imageac09c483b336d4da.png" border="0" style={{zoom:"50%"}}/>
+
+当多个面进行内插的时候，中间会相连接，如果想要各个面形成自己的内插面，可以勾选左下角菜单的 **各面**
+
+如果快捷键操作，就是按下 <Keyboard>I</Keyboard> 键内插，再次按下 <Keyboard>I</Keyboard> 键，就可以进行单独的内插
+
+<img src="https://img.picgo.net/2023/06/18/imagefad1afea073312a5.png" alt="imagefad1afea073312a5.png" border="0" style={{zoom:"50%"}}/>
+
+<img src="https://img.picgo.net/2023/06/18/168707013295423969d272cc63123.png" alt="168707013295423969d272cc63123.png" border="0" style={{zoom:"70%"}}/>
+
+如果忘记了这些快捷键，按下 <Keyboard>I</Keyboard> 键的同时，上方也会出现对应的快捷键提示
+
+<img src="https://img.picgo.net/2023/06/18/imagea99e547a94153a3b.png" alt="imagea99e547a94153a3b.png" border="0"/>
+
+> 内插面和挤出不同，按下 <Keyboard>鼠标右键</Keyboard> 取消操作的时候，不会出现重叠点的问题，它是真的取消操作
+
+### 特殊情况
+
+比如在球体多选面内插的时候会出现内插面生成的范围粗细不一，边缘不平等
+
+这时候可以勾选左下角的 **均等偏移**，就会强制让各个面内插之后的厚度保持相同
+
+<img src="https://img.picgo.net/2023/06/18/image3b6523ea8fa37435.png" alt="image3b6523ea8fa37435.png" border="0" style={{zoom:"50%"}}/>
+
+<img src="https://img.picgo.net/2023/06/18/image1fe6eb5189d2185c.png" alt="image1fe6eb5189d2185c.png" border="0" style={{zoom:"50%"}}/>
+
+
+
+### PART. 3	倒角工具
+
+这个工具非常常用
+
+有时候创建的模型转折面会过于尖锐，这时候使用 **倒角** 工具，就可以让边的位置更加平滑转向
+
+和前两种使用方法一样，选中面之后使用倒角工具
+
+同时也可以使用快捷键 <Keyboard>CTRL + B</Keyboard> ，进行倒角的使用
+
+<img src="https://img.picgo.net/2023/06/18/imageda3565a7e9f0e730.png" alt="imageda3565a7e9f0e730.png" border="0" style={{zoom:"50%"}}/>
+
+这时候使用 <Keyboard>鼠标滚轮</Keyboard> 就可以调整倒角的边数
+
+<img src="https://img.picgo.net/2023/06/18/imageb009ee896fc1e7bf.png" alt="imageb009ee896fc1e7bf.png" border="0" style={{zoom:"50%"}}/>
+
+> 材质编号
+
+可以切换到材质预览模式查看
+
+材质编号默认为 -1，也就是模型原来是什么材质，倒角之后还是什么材质
+
+如果改成0，那么他对应的就是右侧材质列表的第一个材质球，为1就是第二个材质球
+
+<img src="https://img.picgo.net/2023/06/18/imaged8ebb6441634da6c.png" alt="imaged8ebb6441634da6c.png" border="0"/>
+
+> 硬化法向
+
+勾选它后，会拾取到相邻的边的法向之后，让新生成的倒角面法向平均的过渡
+
+具体的作用就是让倒角面看起来更光滑
+
+下图是对比
+
+所以这时候适当的调整一下分段数，光滑的感觉就会更加自然
+
+<img src="https://img.picgo.net/2023/06/18/imageeaf6298eecb0a111.png" alt="imageeaf6298eecb0a111.png" border="0" style={{zoom:"50%"}}/>
+
+> 钳制重叠
+
+如果没开启，倒角会出现反向倒角
+
+<img src="https://img.picgo.net/2023/06/18/imagef3b3149bdb3271ce.png" alt="imagef3b3149bdb3271ce.png" border="0" style={{zoom:"70%"}}/>
+
+开启之后会自动删除重叠的点，不会出现反向的倒角
+
+<img src="https://img.picgo.net/2023/06/18/imagefb04262cf589ddfc.png" alt="imagefb04262cf589ddfc.png" border="0" style={{zoom:"50%"}}/>
+
+> 环切线滑移
+
+默认勾选中，他可以让新生成的边沿着原来的边均匀的滑动
+
+从而获得一个更均匀的宽度
+
+> 缝合边
+
+先不了解，有关 UV 的功能，会以特殊的颜色展示
+
+> 锐边
+
+先不了解，关于平滑着色相关的功能，会以特殊的颜色展示
+
+> 外斜接和内部
+
+这两个选项可以调整衔接处倒角的形状
+
+<img src="https://img.picgo.net/2023/06/18/imagef566673a6bde3478.png" alt="imagef566673a6bde3478.png" border="0" style={{zoom:"50%"}}/>
+
+> 扩散
+
+扩散调整的是衔接处块的大小
+
+<img src="https://img.picgo.net/2023/06/18/image7156917eb94671ec.png" alt="image7156917eb94671ec.png" border="0" style={{zoom:"50%"}}/>
+
+> 相交类型
+
+就是控制相交的边显示与不显示
+
+<img src="https://img.picgo.net/2023/06/18/image669c9769a9102da9.png" alt="image669c9769a9102da9.png" border="0" style={{zoom:"50%"}}/>
+
+> 面强度
+
+默认设置就行，不用管
+
+> 轮廓类型
+
+如果使用自定义的话，可以调整曲线来修改轮廓的造型
+
+<img src="https://img.picgo.net/2023/06/18/image445f01141cc93b9d.png" alt="image445f01141cc93b9d.png" border="0" style={{zoom:"50%"}}/>
+
+同时 preset 中也有很多官方提供的预设曲线
+
+<img src="https://img.picgo.net/2023/06/18/imagea9d6b6c3e202d004.png" alt="imagea9d6b6c3e202d004.png" border="0"/>
+
+
+
+
+
+### PART. 4	环切、偏移环切边工具
+
+#### 1）环切
+
+<img src="https://img.picgo.net/2023/06/18/image835299310682ba82.png" alt="image835299310682ba82.png" border="0"/>
+
+使用快捷键 <Keyboard>CTRL + R</Keyboard> ，可以对模型进行环切
+
+使用 <Keyboard>鼠标滚轮</Keyboard> 可以调整环切的边数
+
+> 平滑度
+
+可以调整环切后的面是隆起还是凹陷
+
+<img src="https://img.picgo.net/2023/06/18/imagebae810b5e0d02680.png" alt="imagebae810b5e0d02680.png" border="0" style={{zoom:"70%"}}/>
+
+> 衰减
+
+可以调整控制平滑度之后外形的变化
+
+> 系数
+
+控制环切后的偏移效果，和控制环切之后用鼠标偏移边的操作效果一样
+
+> 均匀
+
+如图情况，如果左边和右边的边角度等不同
+
+环切就会取平均的角度
+
+<img src="https://img.picgo.net/2023/06/18/imageff4b2536e83e085b.png" alt="imageff4b2536e83e085b.png" border="0" style={{zoom:"50%"}}/>
+
+这个时候，如果想要直接拾取 **右侧边** 的形状，就可以让环切按照右侧的形状
+
+调整 **系数** 选项还是会进行角度的均匀变换，进入左侧边的范围时，环切边还是会慢慢的变成左侧边的造型
+
+如果想要按照 **左侧边** 的形状，就可以选中 **翻转** 选项
+
+
+
+> 钳制
+
+默认是开启的选项
+
+开启钳制，环切边将 **不会超出** 原来模型边的范围
+
+如果关闭钳制，环切边不会受到原来模型边的限制
+
+
+
+## 循环边
+
+循环边是由其共享顶点按顺序连接的多边形边的路径。一般在制作模型的时候，为了能够更方便的调整以及进行倒角通常情况下我们会选择 **四边形建模** 的方式，其中就会有着大量的循环边。
+
+为了方便环选，尽量的都保持 **四边面** 的构造，如果出现多边或者三角的形状，就尽量放在次要的部位
+
+#### 2）偏移环切边
+
+选中一条边后，点击 **偏移循环边** ，就可以该边两边出现两条对称的环切边
+
+<img src="https://img.picgo.net/2023/06/18/imageaabc2b65de3c8ab4.png" alt="imageaabc2b65de3c8ab4.png" border="0" style={{zoom:"50%"}}/>
+
+利用这些循环边就可以做出更多形状，其他的选项和环切一样
+
+
+
+### PART. 5	切割、切分
+
+#### 1）切割
+
+切割可以选择一个点后，鼠标点击另一个点，就可以在两点之间细分出一条边
+
+也可以使用快捷键 <Keyboard>K</Keyboard> 键，快速的调用切割工具
+
+> 差别就是，点击图标，第一步是不会有点吸附的效果，点击一次后才会有
+
+> 而快捷键，默认最开始就可以对点进行吸附
+
+按下 <Keyboard>ENTER</Keyboard> 后，确认操作
+
+按下 <Keyboard>ESC</Keyboard> ，取消操作
+
+<img src="https://img.picgo.net/2023/06/18/imagefc4984ac3ba3d2ce.png" alt="imagefc4984ac3ba3d2ce.png" border="0" style={{zoom:"50%"}}/>
+
+如果按住 <Keyboard>SHIFT</Keyboard> 键，则鼠标经过的所有的点都会被记录，会吸附在距离最近的边线中点上
+
+<img src="https://img.picgo.net/2023/06/18/image71e36fcccfdf9ad8.png" alt="image71e36fcccfdf9ad8.png" border="0" style={{zoom:"67%"}} />
+
+如果按住 <Keyboard>CTRL</Keyboard> 键，这时候切割点不会自动吸附，可以准备跟随鼠标位置
+
+进入正交视角后，按下 <Keyboard>A</Keyboard> 键，就可以平直的切割
+
+<img src="https://img.picgo.net/2023/06/18/image82df2fe0ef7734f6.png" alt="image82df2fe0ef7734f6.png" border="0" style={{zoom:"50%"}}/>
+
+> 也可以按下 <Keyboard>X、Y、Z</Keyboard> 键固定轴向的切割
+
+> 按下 <Keyboard>SHIFT + A</Keyboard> 进入透视模式后，可以一起切割到背面
+
+#### 2）切分
+
+切分和切割工具大体差不多
+
+切分一边会选中所有面再进行操作
+
+但是切分工具会多一个分离的功能
+
+下左下角的窗口中，可以对切割面的内外侧进行删除
+
+<img src="https://img.picgo.net/2023/06/18/image15db299d14e32a44.png" alt="image15db299d14e32a44.png" border="0"/>
+
+
+
+**选中所有面再进行切分** ，然后清空内/外侧，就可以实现下图的效果
+
+> **上面圆圈中箭头的朝向就是外侧，反之就是内侧**
+
+<img src="https://img.picgo.net/2023/06/18/image9840a8bc2c4d8800.png" alt="image9840a8bc2c4d8800.png" border="0" style={{zoom:"50%"}}/>
+
+在点击 **填充** 选项，就可以对切割面进行封面
+
+<img src="https://img.picgo.net/2023/06/18/imaged51facbc659361b8.png" alt="imaged51facbc659361b8.png" border="0" style={{zoom:"50%"}}/>
+
+> 一般切分工具就是用来制作一下边缘缺失，或者石头物体
+
+## 特殊情况
+
+在切分一下细分很多的模型时，比如下方的球体，就会出现切割面有很多顶点，这就会导致可能出现很多重叠点
+
+<img src="https://img.picgo.net/2023/06/18/imagef5028291f0ccee75.png" alt="imagef5028291f0ccee75.png" border="0" style={{zoom:"50%"}}/>
+
+就可以调整左下角菜单中的 **轴阈值** 取控制点与点之间的间距
+
+低于这个阈值的顶点就会被自动合并，就会减少模型在之后出错的概率
+
+
+
+
+
+### PART. 6	多边形建形工具
+
+主要用与拓扑
+
+主要做用就是利用点或者边取快速的创建出想要的结构
+
+低于一个封闭的模型，点击多边形建形工具，按住 <Keyboard>SHIFT</Keyboard> ，移动到的面就会出现红框
+
+这时候，点击红框的面，这个面就会被删除
+
+<img src="https://img.picgo.net/2023/06/18/image-20230618182056185df0c86d7544ec02c.png" alt="image-20230618182056185df0c86d7544ec02c.png" border="0" style={{zoom:"50%"}}/>
+这时候鼠标移动到的 **边和点** 就会出现蓝色
+
+移动蓝色的 边或者点，就可以直接挤出或者移动
+
+> 如果对边挤出的时候，按住 <Keyboard>CTRL</Keyboard> 键，就可以开启吸附的效果
+
+> 吸附也是根据上方吸附的选项，确定按照什么吸附
+
+
+
+<img src="https://img.picgo.net/2023/06/18/imagee9e3746d536549d2.png" alt="imagee9e3746d536549d2.png" border="0" style={{zoom:"50%"}}/>
+
+<img src="https://img.picgo.net/2023/06/18/image397fa37824be0c16.png" alt="image397fa37824be0c16.png" border="0" style={{zoom:"50%"}}/>
+
+
+
+
+
+> 按住 <Keyboard>CTRL</Keyboard> 键的时候，选取的是边，就会从蓝色点边直接生成一个面到鼠标的点
+
+<img src="https://img.picgo.net/2023/06/18/image8d935fbb49d758b6.png" alt="image8d935fbb49d758b6.png" border="0" style={{zoom:"50%"}}/>
+
+> 如果一直按住 <Keyboard>CTRL</Keyboard> 键，会可以在新生成的面上继续延伸
+
+> 如果按住 <Keyboard>CTRL</Keyboard> 键，选取的是点，**就会自动识别点附近的两边形成一个完整的面**
+
+> 然后就可以再进一步扩大新生成的面
+
+<img src="https://img.picgo.net/2023/06/18/imageede0fd75ff519357.png" alt="imageede0fd75ff519357.png" border="0"/>
+
+> 如果按住 <Keyboard>SHIFT</Keyboard> 删除的是红色的点，则点周围的四个边会自动形成平面
+
+<img src="https://img.picgo.net/2023/06/18/imagedfa2116882fabe63.png" alt="imagedfa2116882fabe63.png" border="0" style={{zoom:"50%"}}/>
+
+## 特殊情况
+
+如果合并两条边，同样有可能出现重叠点
+
+> 方法一、之前提到过的，按下 <Keyboard>A</Keyboard> 键全选后，合并顶点 -> 按距离
+
+> 方法二、在建模前，打开右上角的自动合并顶点功能
+
+**这样在吸附的时候，就可以比避免重叠点**
+
+<img src="https://img.picgo.net/2023/06/18/imagea1ed16e878d474d5.png" alt="imagea1ed16e878d474d5.png" border="0"/>
+
+
+
+
+
+### PART. 7	旋绕、旋绕复制工具
+
+#### 1）旋绕工具
+
+比如现在有几条边，想要让这几个边旋转形成圆柱，就可以用旋绕工具
+
+<img src="https://img.picgo.net/2023/06/18/imaged78ed45cb5620122.png" alt="imaged78ed45cb5620122.png" border="0" style={{zoom:"70%"}}/>
+
+就可以拖动这个蓝色的加号，进行旋转
+
+<img src="https://img.picgo.net/2023/06/18/imagedb00708b2c753bfc.png" alt="imagedb00708b2c753bfc.png" border="0" style={{zoom:"50%"}}/>
+
+想要正好形成一个圆柱，可以讲右下角菜单中的角度调整为360°
+
+<img src="https://img.picgo.net/2023/06/18/imagea33088c0875331d1.png" alt="imagea33088c0875331d1.png" border="0" style={{zoom:"50%"}}/>
+
+选中 **自动合并** 选项，就可以自动合并重叠点
+
+
+
+> **使用副本** 选项，如果不勾选，旋转完的物体之间会有面相连接
+
+如果勾选的话，旋转完的物体之间讲不会有面相连接，就会形成一圈的边
+
+> p.s 有个更懒人的方法在后面
+
+<img src="https://img.picgo.net/2023/06/18/image57d74c12cc2cf0a9.png" alt="image57d74c12cc2cf0a9.png" border="0" style={{zoom:"50%"}}/>
+
+> **翻转法线** ，可以开启面朝向的视图，旋转的加号不同，面朝向也不同
+>
+> 如果旋转成反向，那对之后的渲染会产生影响
+
+<img src="https://img.picgo.net/2023/06/18/imagefb5b7738a4a43a0b.png" alt="imagefb5b7738a4a43a0b.png" border="0" style={{zoom:"50%"}}/>
+
+> 如图，如果红色在外面的话，说明是反面旋转了
+
+<img src="https://img.picgo.net/2023/06/18/image-202306181901343397b6ae6e6976cd479.png" alt="image-202306181901343397b6ae6e6976cd479.png" border="0" style={{zoom:"50%"}}/>
+
+此时可以勾选 **翻转法线**，就可以让正面翻转出来
+
+<img src="https://img.picgo.net/2023/06/18/imagea3b04590f817668a.png" alt="imagea3b04590f817668a.png" border="0" style={{zoom:"50%"}}/>
+
+> 如果不想勾选，也不想打开面朝向
+
+可以在旋绕之后，全选所有的面，按下 <Keyboard>Alt + N</Keyboard> ，调出法向面板
+
+直接点击 **重新计算外侧** 按钮，系统就会自动的把正确的面朝向计算出来
+
+<img src="https://img.picgo.net/2023/06/18/imageaef83da4c75dfcb8.png" alt="imageaef83da4c75dfcb8.png" border="0" style={{zoom:"50%"}}/>
+
+> 如果操作的对象是面（比如立方体）的时候，会发现顺时针和逆时针旋转的面朝向都是反的
+
+<img src="https://img.picgo.net/2023/06/18/image6908390be4a9c042.png" alt="image6908390be4a9c042.png" border="0"/>
+
+所以，如果操作对象是封闭的面时，需要手动打开 **使用副本**，也可以用 <Keyboard>Alt + N</Keyboard> 重新计算
+
+> 同时，旋绕完还可以进一步旋绕，就可以做出更加复杂的效果
+
+<img src="https://img.picgo.net/2023/06/18/imageb8a834a2d7208476.png" alt="imageb8a834a2d7208476.png" border="0"/>
+
+
+
+####  2）旋绕复制工具
+
+和旋绕工具差不多，不介绍了，一半用旋绕就行了
+
+
+
+### PART. 8	调整优化工具（最底下四个）
+
+#### 1）光滑工具
+
+选中所有的面，按下光滑工具，拉动黄色控制杆，就可以发现角度变的得光滑
+
+<img src="https://img.picgo.net/2023/06/18/image42828c6b5389ec52.png" alt="image42828c6b5389ec52.png" border="0" style={{zoom:"50%"}}/>
+
+> 左下角菜单中的平滑值，如果 **超过1** ，系统会继续加大力度，反而变得更不光滑
+
+> 因此如果调整到1还不是很平滑，就可以调整第二个 **重复** 的值 ，增加值次数，就会更加平滑
+
+> 如果只希望高度平滑，就可以在下方只勾选 **Z 轴**，就可以不影响其他两个轴
+
+> 光滑中的随机，和之前的衰减编辑的随机差不多
+
+####  2）滑移边线
+
+就是 **编辑模式基础** 那个笔记中的，按两次 <Keyboard>G</Keyboard> 键，进行滑移
+
+
+
+#### 3）法向缩放 和 推/拉工具
+
+##### a.法向缩放
+
+可以让选中的 点、边、面，按照法向进行缩放
+
+快捷键是 <Keyboard>Alt + S</Keyboard> 键
+
+比如圆柱，圈选侧边所有的面
+
+> 如果用 <Keyboard>S</Keyboard> 键进行缩放，那么整个模型都会 **放大 / 缩小**
+
+> 如果使用 <Keyboard>Alt + S</Keyboard> 键的法向缩放，会看到圆柱是 **变粗 / 细**
+
+用法向缩放就可以很快做出一个类似齿轮等形状
+
+<img src="https://img.picgo.net/2023/06/18/imagec315ddc244877f4b.png" alt="imagec315ddc244877f4b.png" border="0" style={{zoom:"50%"}}/>
+
+##### b.推 / 拉 工具
+
+普通缩放是形状不会发生改变
+
+而推拉工具本质是让选择的点朝着中心移动相同的距离
+
+> 如下图，红色边框为推拉前的形状
+
+<img src="https://img.picgo.net/2023/06/18/image8f167c2efdb09e0f.png" alt="image8f167c2efdb09e0f.png" border="0" style={{zoom:"50%"}}/>
+
+
+
+#### 4）切变 和 球形化 工具
+
+##### a. 形变
+
+就是变形的效果
+
+类似 PS 中的斜切
+
+<img src="https://img.picgo.net/2023/06/18/image3889336562c42628.png" alt="image3889336562c42628.png" border="0"/>
+
+##### b.球形化工具
+
+可以让选中的目标逐渐向球形形变
+
+<img src="https://img.picgo.net/2023/06/18/imageeb5fdb20696dcea4.png" alt="imageeb5fdb20696dcea4.png" border="0" style={{zoom:"50%"}}/>
+
+
+
+
+
+#### 5）断离区域 和 断离边线
+
+##### a.断离区域
+
+和 **编辑模式基础** 中的快捷键 <Keyboard>V</Keyboard> 一样
+
+断开顶点或者区域
+
+<img src="https://img.picgo.net/2023/06/18/image090859507326f1c0.png" alt="image090859507326f1c0.png" border="0" style={{zoom:"50%"}}/>
+
+
+
+##### a.断离边线
+
+如图，拖动黄色的圆圈，就可以在线上多出一个顶点
+
+**而且这个顶点还是与原始结构相连**
+
+就可以不通过频繁的细分，就可以做出想要的造型
+
+> 这个工具也可以通过快捷键 <Keyboard>Alt + B</Keyboard> ，快速的进行断离
+
+可以让我们更高效的创建模型
+
+<img src="https://img.picgo.net/2023/06/18/image45a6bc25dcb973ea.png" alt="image45a6bc25dcb973ea.png" border="0" style={{zoom:"70%"}}/>
+
+
+
+## 知识点总结
+01，编辑工具在Blender中是调整模型非常重要的手段，每一种编辑工具的作用都各不相同，我们需要好好熟悉才能够做出想要的造型。
+02大部分的模型编辑工具都有着不止一种作用，我们可以在使用工具的同时在3D视图的上方或者下方看到更多的扩展功能快捷键。
+03.想要创建出完美的模型持续的练习是必不可少的，我们需要尽可能的理解模型内部点、线、面互相的影响关系才能够利用各种编辑工具去最快速以及最合适的达到我们想要的结果。
+
+
+
+
+
+
+
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>
